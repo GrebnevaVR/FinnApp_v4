@@ -1,0 +1,84 @@
+﻿<Window x:Class="FinnApp_v4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+         Title="Бюджет проектов" Height="300" Width="425">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="60" />
+            <Setter Property="Margin" Value="8" />
+        </Style>
+    </Window.Resources>
+    <TabControl>
+        <TabItem Header="Бюджет">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="76*"/>
+                    <ColumnDefinition Width="343*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <ListBox x:Name="budgetList" ItemsSource="{Binding Budgets}" Grid.ColumnSpan="2">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding CompanyName}" FontSize="16" />
+                                <TextBlock Text="{Binding Amount}" FontSize="13" />
+                                <TextBlock Text="{Binding User}" FontSize="16" />
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Margin="0,0,89,0" Height="50" VerticalAlignment="Center" Grid.Row="1">
+                    <Button Content="Добавить" Margin="10" Padding="3" Command="{Binding AddCommand}"  />
+                    <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}"
+CommandParameter="{Binding ElementName=budgetList, Path=SelectedItem}"  />
+                    <Button Content="Удалить" Margin="10" Command="{Binding DeleteCommand}"
+CommandParameter="{Binding ElementName=budgetList, Path=SelectedItem}"  />
+                </StackPanel>
+            </Grid>
+
+        </TabItem>
+        <TabItem Header="Выборка проектов" ContextMenuOpening="TabItem_ContextMenuOpening" GotFocus="TabItem_GotFocus">
+            <Grid>
+                <ListView ItemsSource="{Binding ProjectNames}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Список проектов" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Выборка сотрудников" ContextMenuOpening="TabItem_ContextMenuOpening" GotFocus="TabItem_GotFocus">
+            <Grid>
+                <ListView ItemsSource="{Binding UserNames}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Сотрудники" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Суммы по проектам"  GotFocus="TabItem_GotFocus">
+            <Grid>
+                <ListView ItemsSource="{Binding AmountProject}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Проект" Width="200"/>
+                            <GridViewColumn Header="Сумма" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+</Window>

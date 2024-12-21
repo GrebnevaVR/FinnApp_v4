@@ -1,0 +1,51 @@
+﻿<Window x:Class="FinnApp_v4.BudgetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="BudgetWindow" Height="427" Width="618">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="8" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="8" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="60" />
+            <Setter Property="Margin" Value="8" />
+        </Style>
+    </Window.Resources>
+    <Grid Height="392" VerticalAlignment="Top" HorizontalAlignment="Left" Width="585">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="319" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Название компании" Grid.Row="0" Margin="8,8,8,8"/>
+        <TextBlock Text="Сумма" Grid.Row="1" Margin="8,8,8,8" />
+        <TextBlock Text="ФИО сотрудника" Grid.Row="2" Margin="8,8,8,8" />
+        <TextBlock Text="Должность" Grid.Row="3" Margin="8,8,8,8" />
+        <TextBlock Text="Название проекта" Grid.Row="4" Margin="8,8,8,8" />
+
+        <TextBox Text="{Binding CompanyName}" Grid.Column="1"  Grid.Row="0" Margin="8,8,0,8" HorizontalAlignment="Left" Width="203" />
+        <TextBox Text="{Binding Amount}" Grid.Column="1" Grid.Row="1" Margin="8,10,0,6" HorizontalAlignment="Left" Width="203"/>
+        <TextBox Text="{Binding User}" Grid.Column="1" Grid.Row="2" Margin="8,9,0,7" HorizontalAlignment="Left" Width="203"/>
+        <TextBox Text="{Binding PostUser}" Grid.Column="1" Grid.Row="3" Margin="8,8,0,7" HorizontalAlignment="Left" Width="203"/>
+        <TextBox Text="{Binding ProjectName}" Grid.Column="1" Grid.Row="4" Margin="8,8,0,8" HorizontalAlignment="Left" Width="203"/>
+
+
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Width="455" Margin="10,63,0,3" Grid.RowSpan="2">
+            <Button IsDefault="True" Click="Accept_Click" Content="OK" />
+            <Button IsCancel="True" Content="Отмена" />
+        </StackPanel>
+    </Grid>
+</Window>
